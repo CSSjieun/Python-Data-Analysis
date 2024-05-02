@@ -57,3 +57,39 @@ book = et.fromstring(x_str)
 print(type(book))
 print(book.tag)
 
+# findtext() method
+name = book.findtext('name')
+author = book.findtext('author')
+year = book.findtext('year')
+
+print(name); print(author); print(year)
+
+# XML 복잡한 구조
+x2_str = """
+<books>
+    <book>
+        <name> data anlaysis </name>
+        <author> noname </author>
+        <year> 2024 </year>
+    </book>
+    <book>
+        <name> data science </name>
+        <author> egoing </author>
+        <year> 2023 </year>
+    </book>
+</books>    
+"""
+
+books = et.fromstring(x2_str)
+print(books.tag)
+
+# 여러개의 자식 엘리먼트 확인하기: findall() method
+for book in books.findall('book'):
+    name = book.findtext('name')
+    author = book.findtext('author')
+    year = book.findtext('year')
+    print(name)
+    print(author)
+    print(year)
+    
+print(pd.read_xml(x2_str))
